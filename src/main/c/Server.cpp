@@ -638,7 +638,11 @@ bool Server::unsubscribeFromWriteEvents(Connection* connection) {
 
 void Server::addWebSocketHandler(const char* endpoint, std::shared_ptr<WebSocket::Handler> handler,
                                  bool allowCrossOriginRequests) {
-    _webSocketHandlerMap[endpoint] = {handler, allowCrossOriginRequests};
+    // _webSocketHandlerMap[endpoint] = {handler, allowCrossOriginRequests};
+    WebSocketHandlerEntry entry;
+    entry.handler = handler;
+    entry.allowCrossOrigin = allowCrossOriginRequests;
+    _webSocketHandlerMap.insert(std::make_pair(endpoint, entry));
 }
 
 void Server::addPageHandler(std::shared_ptr<PageHandler> handler) {

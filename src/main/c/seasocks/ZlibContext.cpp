@@ -146,7 +146,8 @@ ZlibContext::ZlibContext() = default;
 ZlibContext::~ZlibContext() = default;
 
 void ZlibContext::initialise(int deflateBits, int inflateBits, int memLevel) {
-    _impl = std::make_unique<Impl>(deflateBits, inflateBits, memLevel);
+    // _impl = std::make_unique<Impl>(deflateBits, inflateBits, memLevel);
+    _impl.reset(new Impl(deflateBits, inflateBits, memLevel));
 }
 
 void ZlibContext::deflate(const uint8_t* input, size_t inputLen, std::vector<uint8_t>& output) {

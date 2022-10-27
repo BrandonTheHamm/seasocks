@@ -65,9 +65,11 @@ struct AsyncResponse : Response {
     void handle(std::shared_ptr<ResponseWriter> writer) override {
         auto& server = _server;
         std::thread t([&server, writer]() mutable {
-            using namespace std::literals::chrono_literals;
+            //using namespace std::literals::chrono_literals;
 
-            std::this_thread::sleep_for(1s); // A long database query...
+            std::this_thread::sleep_for(
+                    std::chrono::seconds(1));
+                    //1s); // A long database query...
             std::string response = "some kind of response...beginning<br>";
             server.execute([response, writer] {
                 writer->begin(ResponseCode::Ok, TransferEncoding::Chunked);
@@ -76,13 +78,17 @@ struct AsyncResponse : Response {
             });
             response = "more data...<br>";
             for (auto i = 0; i < 5; ++i) {
-                std::this_thread::sleep_for(1s); // more data
+                std::this_thread::sleep_for(
+                        std::chrono::seconds(1));
+                        //1s); // more data
                 server.execute([response, writer] {
                     writer->payload(response.data(), response.length());
                 });
             }
             response = "Done!";
-            std::this_thread::sleep_for(100ms); // final data
+            std::this_thread::sleep_for(
+                    std::chrono::milliseconds(100));
+                    // 100ms); // final data
             server.execute([response, writer] {
                 writer->payload(response.data(), response.length());
                 writer->finish(true);

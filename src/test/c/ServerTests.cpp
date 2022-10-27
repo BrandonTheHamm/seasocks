@@ -57,18 +57,22 @@ TEST_CASE("Server tests", "[ServerTests]") {
     }
 
     SECTION("many executes") {
-        using namespace std::literals::chrono_literals;
+        //using namespace std::literals::chrono_literals;
 
         std::atomic<bool> latch(false);
         for (auto i = 0; i < 100; ++i) {
             for (auto j = 0; j < 100; ++j) {
                 server.execute([&] { test++; });
             }
-            std::this_thread::sleep_for(10us);
+            std::this_thread::sleep_for(
+                    std::chrono::microseconds(10));
+                    // 10us);
         }
         server.execute([&] { latch = true; });
         for (int i = 0; i < 1000; ++i) {
-            std::this_thread::sleep_for(1ms);
+            std::this_thread::sleep_for(
+                    std::chrono::milliseconds(1));
+                    //1ms);
             if (latch)
                 break;
         }

@@ -1,6 +1,9 @@
 Seasocks - A tiny embeddable C++ HTTP and WebSocket server
 ====================================================================
 
+*_This fork of the Matt Godbolt's original seasocks library has been modified to compile on older C++11 compilers (gcc 4.8.5 shipped with CentOS/RHEL 7 specifically), with the aim of being easier to access by those of us stuck in the stone ages for whatever reason._*
+
+
 [![CI](https://github.com/mattgodbolt/seasocks/workflows/ci/badge.svg)](https://github.com/mattgodbolt/seasocks/actions)
 [![codecov](https://codecov.io/gh/mattgodbolt/seasocks/branch/master/graph/badge.svg)](https://codecov.io/gh/mattgodbolt/seasocks)
 [![GitHub release](https://img.shields.io/github/release/mattgodbolt/seasocks.svg)](https://github.com/mattgodbolt/seasocks/releases)
@@ -15,6 +18,7 @@ Features
 * Simple command line binary for quick serving of static files only
 * Supports newer Hybi-10 and Hybi-16 WebSockets as well as the older Hixie style.
 * Supports Linux and Windows
+
 
 Stuff it doesn't do
 -------------------

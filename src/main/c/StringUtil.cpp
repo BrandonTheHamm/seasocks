@@ -77,7 +77,8 @@ char* shift(char*& str) {
 }
 
 std::string trimWhitespace(const std::string& str) {
-    auto l = [](const auto& c) { return std::isspace(c); };
+    // auto l = [](const auto& c) { return std::isspace(c); };
+    auto l = [](const char& c) { return std::isspace(c); };
     const auto start = std::find_if_not(str.begin(), str.end(), l);
     const auto end = std::find_if_not(str.rbegin(), str.rend(), l).base();
 

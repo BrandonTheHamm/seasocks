@@ -40,7 +40,8 @@ using NativeSocketType = SOCKET;
 using NativeSocketType = int;
 #endif
 
-static constexpr inline NativeSocketType InvalidSocket = static_cast<NativeSocketType>(-1);
+// static constexpr inline NativeSocketType InvalidSocket = static_cast<NativeSocketType>(-1);
+static constexpr NativeSocketType InvalidSocket = static_cast<NativeSocketType>(-1);
 
 namespace seasocks {
 
