@@ -86,6 +86,7 @@ set_target_properties(
     seasocks
     PROPERTIES
         VERSION ${Seasocks_VERSION}
+        POSITION_INDEPENDENT_CODE ON
 )
 
 if (DEFLATE_SUPPORT)
@@ -101,9 +102,11 @@ target_include_directories(seasocks PUBLIC
 
 add_library(Seasocks::seasocks ALIAS seasocks)
 target_link_libraries(seasocks PRIVATE Threads::Threads)
+
 if (DEFLATE_SUPPORT)
     target_link_libraries(seasocks PRIVATE ZLIB::ZLIB)
 endif ()
+
 install(TARGETS seasocks EXPORT ${PROJECT_NAME}
         LIBRARY DESTINATION "${CMAKE_INSTALL_LIBDIR}"
         ARCHIVE DESTINATION "${CMAKE_INSTALL_LIBDIR}"
